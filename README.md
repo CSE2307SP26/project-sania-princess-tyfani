@@ -1,10 +1,11 @@
+<<<<<<< HEAD
 # project26
 
 ## Team Members:
 
 * Princess Ghann
-* 
-* 
+* Sania Ali
+* Tyfani Fennell
 * 
 
 ## User stories
