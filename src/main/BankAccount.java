@@ -19,4 +19,13 @@ public class BankAccount {
     public double getBalance() {
         return this.balance;
     }
+
+    public void withdraw(double amount) {
+        if (amount > this.balance) {
+            throw new IllegalArgumentException();
+        }
+        else {
+            this.balance -= amount;
+        }
+    }
 }
