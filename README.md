@@ -27,8 +27,6 @@
 Currently our Task 7 relies on Task 2, so both are in need of remedying.
 
 ## What commands are needed to compile and run your code from the command line?
-What commands are needed to compile and run your code from the command line (you should provide a script that people can use to run your program) - for this question, I already put the command in the readme and you can look at my runApp.sh file too, but essentially I put these commands in the runApp.sh file:
+In the runApp.sh file:
 javac -d out src/main/*.java #compiles java files into class files, puts them in a folder called out
-java -cp out main.MainMenu #runs the app, -cp out tells Java where to find the compiled files (out folder), main.MainMenu is the class to run
-
-and all we need to do is run ./runApp.sh in the terminal
+java -cp out main.MainMenu #runs the app, -cp out tells Java where to find the compiled files (out folder), main.MainMenu is the class to run and all we need to do is run ./runApp.sh in the terminal
