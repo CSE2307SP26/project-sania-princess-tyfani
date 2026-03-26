@@ -3,9 +3,9 @@
 ## Team Members:
 
 * Princess Ghann
-* 
-* 
-* 
+* Sania Ali
+* Tyfani Fennell
+  
 
 ## User stories
 
