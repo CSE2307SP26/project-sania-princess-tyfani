@@ -4,8 +4,10 @@ import java.util.Scanner;
 
 public class MainMenu {
 
-    private static final int EXIT_SELECTION = 2;
-	private static final int MAX_SELECTION = 2;
+    private static final int DEPOSIT_SELECTION = 1;
+    private static final int WITHDRAW_SELECTION = 2;
+    private static final int EXIT_SELECTION = 3;
+	private static final int MAX_SELECTION = 3;
 
 	private BankAccount userAccount;
     private Scanner keyboardInput;
@@ -17,9 +19,9 @@ public class MainMenu {
 
     public void displayOptions() {
         System.out.println("Welcome to the 237 Bank App!");
-        
         System.out.println("1. Make a deposit");
-        System.out.println("2. Exit the app");
+        System.out.println("2. Make a withdrawal");
+        System.out.println("3. Exit the app");
 
     }
 
@@ -36,16 +38,37 @@ public class MainMenu {
         switch (selection) {
             case 1:
                 performDeposit();
+                break;
+            case 2:
+                performWithdrawal();
+                break;
         }
     }
 
     public void performDeposit() {
         double depositAmount = -1;
-        while(depositAmount < 0) {
+        while(depositAmount <= 0) {
             System.out.print("How much would you like to deposit: ");
             depositAmount = keyboardInput.nextInt();
         }
-        userAccount.deposit(depositAmount);
+        try {
+            userAccount.deposit(depositAmount);
+        } catch (IllegalArgumentException e) {
+            System.out.println("Error: Invalid deposit amount");
+        }
+    }
+
+    public void performWithdrawal() {
+        double withdrawalAmount = -1;
+        while(withdrawalAmount <= 0) {
+            System.out.print("How much would you like to withdraw: ");
+            withdrawalAmount = keyboardInput.nextInt();
+        }
+        try {
+            userAccount.withdraw(withdrawalAmount);
+        } catch (IllegalArgumentException e) {
+            System.out.println("Error: Insufficient funds");
+        }
     }
 
     public void run() {
