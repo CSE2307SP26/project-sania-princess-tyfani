@@ -36,7 +36,7 @@ public class BankAccountTest {
         }
     }
 
-    // Tests for Task 2: Withdraw
+    // Tests for Withdraw
     @Test
     public void testWithdrawReducesBalance() {
         account.deposit(100);
@@ -54,7 +54,7 @@ public class BankAccountTest {
         }
     }
 
-    // Tests for Task 4: Transaction History
+    // Tests for View Transaction History
     @Test
     public void testHistoryEmptyOnNewAccount() {
         assertEquals(0, account.getTransactionHistory().size());
@@ -100,4 +100,46 @@ public class BankAccountTest {
         assertEquals(1, account.getTransactionHistory().size());
     }
 
-}
+    // Tests for Apply Loan
+    @Test
+    public void testApplyLoanIncreasesBalance() {
+        account.applyForLoan(500);
+        assertEquals(500, account.getBalance(), 0.01);
+    }
+
+    @Test
+    public void testApplyLoanTracksLoanBalance() {
+        account.applyForLoan(500);
+        assertEquals(500, account.getLoanBalance(), 0.01);
+    }
+
+    @Test
+    public void testApplyLoanMultipleLoansAddTogether() {
+        account.applyForLoan(500);
+        account.applyForLoan(200);
+        assertEquals(700, account.getLoanBalance(), 0.01);
+    }
+
+    @Test 
+    public void testApplyLoanZeroThrowsException() {
+        try {
+            account.applyForLoan(0);
+            fail("Expected IllegalArgumentException for zero loan");
+        } catch (IllegalArgumentException e) {
+            // expected
+        }
+    }
+
+    @Test
+    public void testApplyForLoanNegativeThrowsException() {
+        try {
+            account.applyForLoan(-100);
+            fail("Expected IllegalArgumentsException for negative loan");
+        } catch (IllegalArgumentException e) {
+            // expected
+        }
+    }
+
+    }
+
+
