@@ -140,6 +140,73 @@ public class BankAccountTest {
         }
     }
 
+    // Tests for Loan Payment
+
+    @Test
+    public void testLoanPaymentReducesLoanBalance() {
+        account.applyForLoan(500);
+        account.makeLoanPayment(100);
+        assertEquals(400, account.getBalance(), 0.01);
     }
+
+    @Test
+    public void testLoanPaymentReducesAccountBalance() {
+        account.applyForLoan(500);
+        account.makeLoanPayment(100);
+        assertEquals(400, account.getBalance(), 0.01);
+    }
+
+    @Test
+    public void testLoanPaymentFullPayoff() {
+        account.applyForLoan(500);
+        account.makeLoanPayment(500);
+        assertEquals(0, account.getLoanBalance(), 0.01);
+    }
+
+    @Test 
+    public void testLoanPaymentMoreThanLoanBalanceThrowsException() {
+        account.applyForLoan(500);
+        try {
+            account.makeLoanPayment(600);
+            fail("Expected IllegalArgumentException for payment exceeding loan balance");
+        } catch (IllegalArgumentException e) {
+            // expected
+        }
+    }
+
+    @Test 
+    public void testLoanPaymentMoreThanAccountBalanceThrowsException() {
+        account.applyForLoan(500);
+        account.withdraw(400);
+        try {
+            account.makeLoanPayment(200);
+            fail("Expected IllegalStateException for insufficient funds");
+        } catch (IllegalStateException e) {
+            // expected
+        }
+    }
+
+    @Test 
+    public void testLoanPaymentNoLoanThrowsException() {
+        try {
+            account.makeLoanPayment(100);
+            fail("Expected IllegalStateException for no outstanding loan");
+        } catch (IllegalStateException e) {
+            // expected
+        }
+    }
+
+    @Test 
+    public void testLoanPaymentZeroThrowsException() {
+        account.applyForLoan(500);
+        try {
+           account.makeLoanPayment(0);
+           fail("Expected IllegalArgumentException for zero payment");
+        } catch (IllegalArgumentException e) {
+            // expected
+        }
+    }
+
+}
 
 
