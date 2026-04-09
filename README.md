@@ -14,6 +14,7 @@ Completed first iteration:
 Completed second iteration:
 1. A bank customer should be able to view their transaction history for an account.
 2. A bank customer should be able to apply for a loan.
+3. A bank customer should be able to make a payment towards a loan.
 
 --------------------------------------------------------------------------------------
 4. A bank customer should be able to check their account balance. 
