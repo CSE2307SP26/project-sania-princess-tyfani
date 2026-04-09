@@ -10,7 +10,7 @@
 Completed first iteration:
 1. A bank customer should be able to deposit into an existing account. (Shook)
 2. A bank customer should be able to withdraw from an account.
-3. 4. A bank customer should be able to view their transaction history for an account.
+3. A bank customer should be able to view their transaction history for an account.
 
 --------------------------------------------------------------------------------------
 4. A bank customer should be able to check their account balance. 
