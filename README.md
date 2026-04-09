@@ -25,6 +25,8 @@ Completed second iteration:
 9. A bank adminstrator should be able to add an interest payment to an existing account when necessary.
 
 ## What user stories do you intend to complete next iteration?
+A bank administrator should be able to apply interest to an outstanding loan.
+A bank customer should be able to take out a loan with a set repayment term.
    
 ## Is there anything that you implemented but doesn't currently work?
 
