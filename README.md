@@ -1,31 +1,34 @@
 # project26
 
+We are using best practice to establishing a baseline banking model. Our strategy relies on the more intuitive banking systems at our disposal like BoFa, Chase or Wells Fargo.
+
 ## Team Members:
 
 * Princess Ghann
 * Sania Ali
 * Tyfani Fennell
-  
+
 ## User stories
+
 Completed first iteration:
-1. A bank customer should be able to deposit into an existing account. (Shook)
-2. A bank customer should be able to withdraw from an account.
+1. A bank customer should be able to deposit into an existing account. (Princess)
+2. A bank customer should be able to withdraw from an account. (Sania)
+3. A bank customer should be able to check their account balance. (Princess)
+4. A bank customer should be able to create an additional account with the bank. (Princess)
+5. A bank customer should be able to close an existing account. (Tyfani)
+6. A bank customer should be able to transfer money from one account to another. (Tyfani)
 
 Completed second iteration:
-1. A bank customer should be able to view their transaction history for an account.
-2. A bank customer should be able to apply for a loan.
-
---------------------------------------------------------------------------------------
-4. A bank customer should be able to check their account balance. 
-5. A bank customer should be able to create an additional account with the bank. 
-6. A bank customer should be able to close an existing account.
-7. A bank customer should be able to transfer money from one account to another. 
-8. A bank adminstrator should be able to collect fees from existing accounts when necessary.
-9. A bank adminstrator should be able to add an interest payment to an existing account when necessary.
+1. A bank customer should be able to view their transaction history for an account. (Sania)
+2. A bank customer should be able to apply for a loan. (Sania)
+3. A bank customer should be able to make a payment towards a loan. (Sania)
 
 ## What user stories do you intend to complete next iteration?
-   
+8. A bank administrator should be able to collect fees from existing accounts when necessary.
+9. A bank administrator should be able to add an interest payment to an existing account when necessary.
+
 ## Is there anything that you implemented but doesn't currently work?
+Currently our Task 7 relies on Task 2, so both are in need of remedying.
 
 ## What commands are needed to compile and run your code from the command line?
-./runApp.sh
+Run ./runApp.sh in the terminal. This will compile and run the app automatically.
