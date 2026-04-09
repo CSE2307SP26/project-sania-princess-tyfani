@@ -27,8 +27,11 @@ public class BankAccount {
         if(balance > amountToTransfer){
             balance = balance - amountToTransfer;
             alternative.deposit(amountToTransfer);
+            return amountToTransfer;
         }else{
            System.err.println("INSUFFICIENT FUNDS"); 
+           return 0.0;
+           
         }
     }
 
@@ -36,10 +39,10 @@ public class BankAccount {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Would you like to close this account: Y/N");
         int selection = scanner.nextInt();
-        if(selection = 'Y'){
+        if(selection == 1){
              Scanner scanner2 = new Scanner(System.in);
              System.out.println("Would you like to make a withdrawal: Y/N");
-             if(selection = 'Y'){
+             if(selection == 1){
                 System.err.println("Withdraw All Funds")
              }else{
                 System.err.println("nevermind");
