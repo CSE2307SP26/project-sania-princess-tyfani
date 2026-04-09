@@ -1,13 +1,15 @@
 package main;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class MainMenu {
 
     private static final int DEPOSIT_SELECTION = 1;
     private static final int WITHDRAW_SELECTION = 2;
-    private static final int EXIT_SELECTION = 3;
-	private static final int MAX_SELECTION = 3;
+    private static final int HISTORY_SELECTION = 3;
+    private static final int EXIT_SELECTION = 4;
+	private static final int MAX_SELECTION = 4;
 
 	private BankAccount userAccount;
     private Scanner keyboardInput;
@@ -21,7 +23,8 @@ public class MainMenu {
         System.out.println("Welcome to the 237 Bank App!");
         System.out.println("1. Make a deposit");
         System.out.println("2. Make a withdrawal");
-        System.out.println("3. Exit the app");
+        System.out.println("3. View transaction history");
+        System.out.println("4. Exit the app");
 
     }
 
@@ -41,6 +44,9 @@ public class MainMenu {
                 break;
             case 2:
                 performWithdrawal();
+                break;
+            case 3:
+                displayTransactionHistory();
                 break;
         }
     }
@@ -68,6 +74,21 @@ public class MainMenu {
             userAccount.withdraw(withdrawalAmount);
         } catch (IllegalArgumentException e) {
             System.out.println("Error: Insufficient funds");
+        }
+    }
+
+    public void displayTransactionHistory() {
+        List<Transaction> history = userAccount.getTransactionHistory();
+        if (history.isEmpty()) {
+            System.out.println("No transactions yet");
+            return;
+        }
+        else {
+            System.out.println("--Transaction History--");
+            for (int i = 0; i < history.size(); i++) {
+                System.out.printf("%3d. %s%n", i + 1, history.get(i));
+            }
+            System.out.println("-----");
         }
     }
 

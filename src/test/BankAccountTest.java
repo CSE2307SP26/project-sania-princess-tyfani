@@ -4,6 +4,9 @@ import main.BankAccount;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
+
+import java.beans.Transient;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -51,5 +54,50 @@ public class BankAccountTest {
         }
     }
 
+    // Tests for Task 4: Transaction History
+    @Test
+    public void testHistoryEmptyOnNewAccount() {
+        assertEquals(0, account.getTransactionHistory().size());
+    }
+
+    @Test
+    public void testHistoryRecordsDeposit() {
+        account.deposit(100);
+        assertEquals(1, account.getTransactionHistory().size());
+        assertEquals(Transaction.Type.DEPOSIT, account.getTransactionHistory().get(0).getType());
+        assertEquals(100, account.getTransactionHistory().get(0).getAmount(), 0.01);
+        assertEquals(100, account.getTransactionHistory().get(0).getBalanceAfter(), 0.01);
+    }
+
+    @Test
+    public void testHistoryRecordsWithdrawal() {
+        account.deposit(100);
+        account.withdraw(40);
+        assertEquals(2, account.getTransactionHistory().size());
+        assertEquals(Transaction.Type.WITHDRAWAL, account.getTransactionHistory().get(1).getType());
+        assertEquals(40, account.getTransactionHistory().get(1).getAmount(), 0.01);
+        assertEquals(60, account.getTransactionHistory().get(1).getBalanceAfter(), 0.01);
+    }
+
+    @Test
+    public void testHistoryMultipleTransactionsInOrder() {
+        account.deposit(200);
+        account.withdraw(50);
+        account.deposit(25);
+        assertEquals(Transaction.Type.DEPOSIT, account.getTransactionHistory().get(0).getType());
+        assertEquals(Transaction.Type.WITHDRAWAL, account.getTransactionHistory().get(1).getType());
+        assertEquals(Transaction.Type.DEPOSIT, account.getTransactionHistory().get(2).getType());
+    }
+
+    @Test
+    public void testHistoryFailedWithdrawalNotRecorded() {
+        account.deposit(50);
+        try {
+            account.withdraw(200);
+        } catch (IllegalStateException e) {
+            // expected
+        }
+        assertEquals(1, account.getTransactionHistory().size());
+    }
 
 }
