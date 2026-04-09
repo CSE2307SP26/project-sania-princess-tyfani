@@ -1,6 +1,6 @@
 # project26
 
-We are using best practice to establishing a baseline banking model. Our strategy relies on the more intuitive banking systems at our disposal like BoFa, Chase or Wells Fargo.
+We are using best practice to establish a baseline banking model. Our strategy relies on the more intuitive banking systems at our disposal like BoFa, Chase or Wells Fargo.
 
 ## Team Members:
 
