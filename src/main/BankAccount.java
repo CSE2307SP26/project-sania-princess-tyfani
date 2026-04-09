@@ -41,9 +41,25 @@ public class BankAccount {
             balance += amount;
         }
         else {
-            throw new IllegalArgumentException("Loan amount must be greater than zero");
+            throw new IllegalArgumentException("Loan amount must be greater than zero.");
         }
-        
+    }
+
+    public void makeLoanPayment(double amount) {
+        if (amount <= 0) {
+            throw new IllegalArgumentException("Payment must be greater than zero.");
+        }
+        if (loanBalance == 0) {
+            throw new IllegalStateException("No outstanding loan to pay.");
+        }
+        if (amount > loanBalance) {
+            throw new IllegalArgumentException("Payment exceeds outstanding loan balance.");
+        }
+        if (amount > balance) {
+            throw new IllegalStateException("Insufficient funds.");
+        }
+        loanBalance -= amount;
+        balance -= amount;
     }
 
     public double getBalance() {

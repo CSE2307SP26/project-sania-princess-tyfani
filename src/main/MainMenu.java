@@ -9,8 +9,9 @@ public class MainMenu {
     private static final int WITHDRAW_SELECTION = 2;
     private static final int HISTORY_SELECTION = 3;
     private static final int LOAN_SELECTION = 4;
-    private static final int EXIT_SELECTION = 5;
-	private static final int MAX_SELECTION = 5;
+    private static final int LOAN_PAYMENT_SELECTION = 5;
+    private static final int EXIT_SELECTION = 6;
+	private static final int MAX_SELECTION = 6;
 
 	private BankAccount userAccount;
     private Scanner keyboardInput;
@@ -26,7 +27,8 @@ public class MainMenu {
         System.out.println("2. Make a withdrawal");
         System.out.println("3. View transaction history");
         System.out.println("4. Apply for a loan");
-        System.out.println("5. Exit the app");
+        System.out.println("5. Make a loan payment");
+        System.out.println("6. Exit the app");
 
     }
 
@@ -52,6 +54,9 @@ public class MainMenu {
                 break;
             case 4:
                 performLoanApplication();
+                break;
+            case 5:
+                performLoanPayment();
                 break;
         }
     }
@@ -116,6 +121,34 @@ public class MainMenu {
             userAccount.applyForLoan(loanAmount);
             System.out.printf("Loan of $%.2f approved. New balance: $%.2f. Outstanding loan: $%.2f%n", loanAmount, userAccount.getBalance(), userAccount.getLoanBalance());
         } catch (IllegalArgumentException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+
+    public void performLoanPayment() {
+        if (userAccount.getLoanBalance() == 0) {
+            System.out.println("You have no outstanding loan.");
+            return;
+        }
+        System.out.printf("Outstanding loan balance: $%.2f%n", userAccount.getLoanBalance());
+        double paymentAmount = 0;
+        while (paymentAmount <= 0) {
+            System.out.print("How much would you like to pay: ");
+            if (keyboardInput.hasNextDouble()) {
+                paymentAmount = keyboardInput.nextDouble();
+                if (paymentAmount <= 0) {
+                    System.out.println("Please enter an amount greater than zero");
+                }
+            }
+            else {
+                System.out.println("Invalid input. Please enter a number.");
+                keyboardInput.next();
+            }
+        }
+        try {
+            userAccount.makeLoanPayment(paymentAmount);
+            System.out.printf("Payment of $%.2f accepted. Remaining loan: $%.2f%n", paymentAmount, userAccount.getLoanBalance());
+        } catch (IllegalArgumentException | IllegalStateException e) {
             System.out.println("Error: " + e.getMessage());
         }
     }
