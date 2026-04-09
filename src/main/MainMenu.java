@@ -8,8 +8,9 @@ public class MainMenu {
     private static final int DEPOSIT_SELECTION = 1;
     private static final int WITHDRAW_SELECTION = 2;
     private static final int HISTORY_SELECTION = 3;
-    private static final int EXIT_SELECTION = 4;
-	private static final int MAX_SELECTION = 4;
+    private static final int LOAN_SELECTION = 4;
+    private static final int EXIT_SELECTION = 5;
+	private static final int MAX_SELECTION = 5;
 
 	private BankAccount userAccount;
     private Scanner keyboardInput;
@@ -24,7 +25,8 @@ public class MainMenu {
         System.out.println("1. Make a deposit");
         System.out.println("2. Make a withdrawal");
         System.out.println("3. View transaction history");
-        System.out.println("4. Exit the app");
+        System.out.println("4. Apply for a loan");
+        System.out.println("5. Exit the app");
 
     }
 
@@ -47,6 +49,9 @@ public class MainMenu {
                 break;
             case 3:
                 displayTransactionHistory();
+                break;
+            case 4:
+                performLoanApplication();
                 break;
         }
     }
@@ -91,6 +96,30 @@ public class MainMenu {
             System.out.println("-----");
         }
     }
+
+    public void performLoanApplication() {
+        double loanAmount = 0;
+        while (loanAmount <= 0) {
+            System.out.print("How much would you like to borrow: ");
+            if (keyboardInput.hasNextDouble()) {
+                loanAmount = keyboardInput.nextDouble();
+                if (loanAmount <= 0) {
+                    System.out.println("Please enter an amount greater than zero");
+                }
+            }
+            else {
+                System.out.println("Invalid input. Please enter a number.");
+                keyboardInput.next();
+            }
+        }
+        try {
+            userAccount.applyForLoan(loanAmount);
+            System.out.printf("Loan of $%.2f approved. New balance: $%.2f. Outstanding loan: $%.2f%n", loanAmount, userAccount.getBalance(), userAccount.getLoanBalance());
+        } catch (IllegalArgumentException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
+    
 
     public void run() {
         int selection = -1;
