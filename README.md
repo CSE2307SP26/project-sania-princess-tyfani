@@ -30,7 +30,9 @@ Completed third iteration:
 1. A bank administrator should be able to collect fees from existing accounts when necessary. (Sania)
 2. A bank customer should be able to transfer money from one account to another, logic correct, but testing incomplete (Tyfani), psuedocode available to clarify this upon request.
 3. A bank should allow users to create a profile, log in securely, and manage their accounts.(Princess)
-4. 
+4. A checking account should allow withdrawals with overdraft protection, apply transaction fees, and support monthly maintenance fees when the account is overdrawn. (Princess)
+5. A bank should allow savings accounts to handle deposits, withdrawals with a minimum balance requirement, and earn monthly interest. (Princess)
+
 
 ## What commands are needed to compile and run your code from the command line?
 Run ./runApp.sh in the terminal. This will compile and run the app automatically.
