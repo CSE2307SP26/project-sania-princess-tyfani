@@ -4,16 +4,18 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import main.Loan;
+
 public class BankAccount {
 
     private double balance;
     private final List<Transaction> transactionHistory;
-    private double loanBalance;
+    private Loan loan;
 
     public BankAccount() {
         this.balance = 0;
         transactionHistory = new ArrayList<>();
-        loanBalance = 0;
+        loan = null;
     }
 
     public void deposit(double amount) {
@@ -27,7 +29,7 @@ public class BankAccount {
 
     public void withdraw(double amount) {
         if (amount > this.balance) {
-            throw new IllegalArgumentException();
+            throw new IllegalStateException("Insufficient funds");
         }
         else {
             this.balance -= amount;
@@ -36,14 +38,27 @@ public class BankAccount {
     }
 
     public void applyForLoan(double amount) {
-        if (amount > 0) {
-            loanBalance += amount;
-            balance += amount;
+        if (amount <= 0) {
+            throw new IllegalArgumentException("Loan amount must be greater than zero.");
+        }
+        if (loan == null) {
+            loan = new Loan(amount);
         }
         else {
-            throw new IllegalArgumentException("Loan amount must be greater than zero");
+            loan.addAmount(amount);
         }
-        
+        balance += amount;
+    }
+
+    public void makeLoanPayment(double amount) {
+        if (loan == null || loan.getLoanBalance() == 0) {
+            throw new IllegalStateException("No outstanding loan to pay.");
+        }
+        if (amount > balance) {
+            throw new IllegalStateException("Insufficient funds.");
+        }
+        loan.makePayment(amount);
+        balance -= amount;
     }
 
     public double getBalance() {
@@ -51,7 +66,7 @@ public class BankAccount {
     }
 
     public double getLoanBalance() {
-        return loanBalance;
+        return loan == null ? 0 : loan.getLoanBalance();
     }
 
     public List<Transaction> getTransactionHistory() {
