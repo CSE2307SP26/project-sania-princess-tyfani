@@ -22,13 +22,13 @@ Completed second iteration:
 1. A bank customer should be able to view their transaction history for an account. (Sania)
 2. A bank customer should be able to apply for a loan. (Sania)
 3. A bank customer should be able to make a payment towards a loan. (Sania)
-6. A bank customer should be able to transfer money from one account to another (front end/incomplete); I also developed
-rough panel sketch with intention of working toward a streamlined display. (Tyfani)
+6. A bank customer should be able to transfer money from one account to another (front end/incomplete);
+7. Developed a rough dashboard sketch with intention of working toward a more streamlined display. (Tyfani)
 
 
 Completed third iteration:
-A bank administrator should be able to collect fees from existing accounts when necessary. (Sania)
-A bank customer should be able to transfer money from one account to another, logic correct, but testing incomplete (Tyfani)
+1. A bank administrator should be able to collect fees from existing accounts when necessary. (Sania)
+2. A bank customer should be able to transfer money from one account to another, logic correct, but testing incomplete (Tyfani)
 
 ## What commands are needed to compile and run your code from the command line?
 Run ./runApp.sh in the terminal. This will compile and run the app automatically.
