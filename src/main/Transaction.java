@@ -4,7 +4,8 @@ public class Transaction {
 
     public enum Type {
         DEPOSIT,
-        WITHDRAWAL
+        WITHDRAWAL,
+        FEE
     }
 
     private final Type type;

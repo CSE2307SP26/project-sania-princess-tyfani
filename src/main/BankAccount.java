@@ -73,4 +73,17 @@ public class BankAccount {
         return Collections.unmodifiableList(transactionHistory);
     }
 
+    public void applyFee(double amount) {
+        if (amount <= 0) {
+            throw new IllegalArgumentException("Fee amount must be greater than zero.");
+        }
+        if (amount > balance) {
+            throw new IllegalStateException("Insufficient funds.");
+        
+        }
+        balance -= amount;
+        transactionHistory.add(new Transaction(Transaction.Type.FEE, amount, balance));
+    }
+
+
 }
