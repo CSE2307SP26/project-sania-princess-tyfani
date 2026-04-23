@@ -4,16 +4,18 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import main.Loan;
+
 public class BankAccount {
 
     private double balance;
     private final List<Transaction> transactionHistory;
-    private double loanBalance;
+    private Loan loan;
 
     public BankAccount() {
         this.balance = 0;
         transactionHistory = new ArrayList<>();
-        loanBalance = 0;
+        loan = null;
     }
 
     public void deposit(double amount) {
@@ -27,7 +29,7 @@ public class BankAccount {
 
     public void withdraw(double amount) {
         if (amount > this.balance) {
-            throw new IllegalArgumentException();
+            throw new IllegalStateException("Insufficient funds");
         }
         else {
             this.balance -= amount;
@@ -36,29 +38,26 @@ public class BankAccount {
     }
 
     public void applyForLoan(double amount) {
-        if (amount > 0) {
-            loanBalance += amount;
-            balance += amount;
-        }
-        else {
+        if (amount <= 0) {
             throw new IllegalArgumentException("Loan amount must be greater than zero.");
         }
+        if (loan == null) {
+            loan = new Loan(amount);
+        }
+        else {
+            loan.addAmount(amount);
+        }
+        balance += amount;
     }
 
     public void makeLoanPayment(double amount) {
-        if (amount <= 0) {
-            throw new IllegalArgumentException("Payment must be greater than zero.");
-        }
-        if (loanBalance == 0) {
+        if (loan == null || loan.getLoanBalance() == 0) {
             throw new IllegalStateException("No outstanding loan to pay.");
-        }
-        if (amount > loanBalance) {
-            throw new IllegalArgumentException("Payment exceeds outstanding loan balance.");
         }
         if (amount > balance) {
             throw new IllegalStateException("Insufficient funds.");
         }
-        loanBalance -= amount;
+        loan.makePayment(amount);
         balance -= amount;
     }
 
@@ -67,11 +66,24 @@ public class BankAccount {
     }
 
     public double getLoanBalance() {
-        return loanBalance;
+        return loan == null ? 0 : loan.getLoanBalance();
     }
 
     public List<Transaction> getTransactionHistory() {
         return Collections.unmodifiableList(transactionHistory);
     }
+
+    public void applyFee(double amount) {
+        if (amount <= 0) {
+            throw new IllegalArgumentException("Fee amount must be greater than zero.");
+        }
+        if (amount > balance) {
+            throw new IllegalStateException("Insufficient funds.");
+        
+        }
+        balance -= amount;
+        transactionHistory.add(new Transaction(Transaction.Type.FEE, amount, balance));
+    }
+
 
 }
