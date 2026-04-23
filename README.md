@@ -23,12 +23,12 @@ Completed second iteration:
 2. A bank customer should be able to apply for a loan. (Sania)
 3. A bank customer should be able to make a payment towards a loan. (Sania)
 6. A bank customer should be able to transfer money from one account to another (front end/incomplete);
-7. Developed a rough dashboard sketch with intention of working toward a more streamlined display. (Tyfani)
+7. Developed a rough dashboard sketch with intention of working toward a more streamlined display, psuedocode available to clarify this upon request. (Tyfani)
 
 
 Completed third iteration:
 1. A bank administrator should be able to collect fees from existing accounts when necessary. (Sania)
-2. A bank customer should be able to transfer money from one account to another, logic correct, but testing incomplete (Tyfani)
+2. A bank customer should be able to transfer money from one account to another, logic correct, but testing incomplete (Tyfani), psuedocode available to clarify this upon request.
 
 ## What commands are needed to compile and run your code from the command line?
 Run ./runApp.sh in the terminal. This will compile and run the app automatically.
