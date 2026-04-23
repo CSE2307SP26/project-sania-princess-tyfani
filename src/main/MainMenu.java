@@ -3,6 +3,8 @@ package main;
 import java.util.List;
 import java.util.Scanner;
 
+import main.AdminService;
+
 public class MainMenu {
 
     private static final int DEPOSIT_SELECTION = 1;
@@ -10,8 +12,9 @@ public class MainMenu {
     private static final int HISTORY_SELECTION = 3;
     private static final int LOAN_SELECTION = 4;
     private static final int LOAN_PAYMENT_SELECTION = 5;
-    private static final int EXIT_SELECTION = 6;
-	private static final int MAX_SELECTION = 6;
+    private static fina int COLLECT_FEE_SELECTION = 6;
+    private static final int EXIT_SELECTION = 7;
+	private static final int MAX_SELECTION = 7;
 
 	private BankAccount userAccount;
     private Scanner keyboardInput;
@@ -28,7 +31,8 @@ public class MainMenu {
         System.out.println("3. View transaction history");
         System.out.println("4. Apply for a loan");
         System.out.println("5. Make a loan payment");
-        System.out.println("6. Exit the app");
+        System.out.println("6. Collect a fee (admin)");
+        System.out.println("7. Exit the app");
 
     }
 
@@ -57,6 +61,9 @@ public class MainMenu {
                 break;
             case 5:
                 performLoanPayment();
+                break;
+            case 6:
+                peformCollectFee();
                 break;
         }
     }
@@ -166,6 +173,27 @@ public class MainMenu {
     public static void main(String[] args) {
         MainMenu bankApp = new MainMenu();
         bankApp.run();
+    }
+
+    public void performCollectFee() {
+        AdminService admin = new AdminService();
+        double feeAmount = 0;
+        while (feeAmount <= 0){
+            System.out.print("Enter fee amount to collect: ");
+            if (keyboardInput.hasNextDouble()) {
+                feeAmount = keyboardInput.nextDouble();
+            }
+            else {
+                System.out.println("Invalid input. Please enter a number");
+                keyboardInput.next();
+            }
+        }
+        try {
+            admin.collectFee(userAccount, feeAmount);
+            System.out.printf("Fee of $%.2f collected. New balance: $%.2f%n", feeAmount, userAccount.getBalance());
+        } catch (IllegalStateException e) {
+            Sytem.out.println("Error: " + e.getMessage());
+        }
     }
 
 }
