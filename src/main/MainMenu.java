@@ -12,7 +12,7 @@ public class MainMenu {
     private static final int HISTORY_SELECTION = 3;
     private static final int LOAN_SELECTION = 4;
     private static final int LOAN_PAYMENT_SELECTION = 5;
-    private static fina int COLLECT_FEE_SELECTION = 6;
+    private static final int COLLECT_FEE_SELECTION = 6;
     private static final int EXIT_SELECTION = 7;
 	private static final int MAX_SELECTION = 7;
 
@@ -63,7 +63,7 @@ public class MainMenu {
                 performLoanPayment();
                 break;
             case 6:
-                peformCollectFee();
+                performCollectFee();
                 break;
         }
     }
@@ -192,7 +192,7 @@ public class MainMenu {
             admin.collectFee(userAccount, feeAmount);
             System.out.printf("Fee of $%.2f collected. New balance: $%.2f%n", feeAmount, userAccount.getBalance());
         } catch (IllegalStateException e) {
-            Sytem.out.println("Error: " + e.getMessage());
+            System.out.println("Error: " + e.getMessage());
         }
     }
 

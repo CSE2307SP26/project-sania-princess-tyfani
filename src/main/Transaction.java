@@ -4,7 +4,7 @@ public class Transaction {
 
     public enum Type {
         DEPOSIT,
-        WITHDRAWAL
+        WITHDRAWAL,
         FEE
     }
 
